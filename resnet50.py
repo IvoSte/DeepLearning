@@ -35,30 +35,30 @@ def res_identity(x, filters):
   return x
   
 def res_conv(x, s, filters):
-  # here the input size changes
+  ''' here the input size changes'''
   x_skip = x
   f1, f2 = filters
 
-  # first block
+  ''' first block'''
   x = Conv2D(f1, kernel_size=(1, 1), strides=(s, s), padding='valid', kernel_regularizer=l2(0.001))(x)
-  # when s = 2 then it is like downsizing the feature map
+  ''' when s = 2 then it is like downsizing the feature map'''
   x = BatchNormalization()(x)
   x = Activation(activations.relu)(x)
 
-  # second block
+  ''' second block'''
   x = Conv2D(f1, kernel_size=(3, 3), strides=(1, 1), padding='same', kernel_regularizer=l2(0.001))(x)
   x = BatchNormalization()(x)
   x = Activation(activations.relu)(x)
 
-  #third block
+  '''third block'''
   x = Conv2D(f2, kernel_size=(1, 1), strides=(1, 1), padding='valid', kernel_regularizer=l2(0.001))(x)
   x = BatchNormalization()(x)
 
-  # shortcut 
+  ''' shortcut '''
   x_skip = Conv2D(f2, kernel_size=(1, 1), strides=(s, s), padding='valid', kernel_regularizer=l2(0.001))(x_skip)
   x_skip = BatchNormalization()(x_skip)
 
-  # add 
+  ''' add '''
   x = Add()([x, x_skip])
   x = Activation(activations.relu)(x)
 
