@@ -2,18 +2,17 @@ import os
 import shutil
 import numpy as np
 from PIL import Image
+import webbrowser
 
 # Import an image from path, print specs, show image
 def open_print_specs(im_path, show_im):
     im = Image.open(im_path)
-    print("Format:", im.format, 
-            "\n Mode:", im.mode, 
-            "\n Size:", im.size)
-    if show_im:
-        im.show()
+    # print("Format:", im.format,             "\n Mode:", im.mode,             "\n Size:", im.size)
+    # if show_im:
+    webbrowser.open(im_path)
     
     im_arr = np.array(im)
-    print("Pixel intensities: \n", im_arr)
+    # print("Pixel intensities: \n", im_arr)
     return im_arr
     
 # Get array of pixels from image path
@@ -48,6 +47,6 @@ def norm_pixels(pixels):
     return pixels
 
 # Bit of scratch main code
-im_arr = open_print_specs("data/train/class_2/gif_first_frame_11aa (1).jpg", False)
+im_arr = open_print_specs("data/train/other/gif_first_frame_11aa (1).jpg", True)
 pix = norm_pixels(im_arr)
 print(pix)

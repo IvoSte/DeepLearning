@@ -4,9 +4,10 @@ import tensorflow as tf
 from tensorflow import keras
 import numpy as np
 
-def lenet_model():
+def data_mnist():
     (train_x, train_y), (test_x, test_y) = keras.datasets.mnist.load_data()
     print(len(train_x), len(train_y), len(test_x), len(test_y))
+    print(type(train_x[1]))
 
     # Normalize pixel intensities
     train_x = train_x / 255.0
@@ -17,6 +18,29 @@ def lenet_model():
     test_x = tf.expand_dims(test_x, 3)
     val_x = train_x[:5000]
     val_y = train_y[:5000]
+    return train_x, train_y, test_x, test_y, val_x, val_y
+
+def our_data():
+    # train_x = numpy.ndarray
+    # for i in range(0,6):
+    #     train_x
+    (train_x, train_y), (test_x, test_y) = keras.datasets.mnist.load_data()
+    print(len(train_x), len(train_y), len(test_x), len(test_y))
+    print(type(train_x[1]))
+
+    # Normalize pixel intensities
+    train_x = train_x / 255.0
+    test_x = test_x / 255.0
+
+    # # 
+    train_x = tf.expand_dims(train_x, 3)
+    test_x = tf.expand_dims(test_x, 3)
+    val_x = train_x[:5000]
+    val_y = train_y[:5000]
+    return train_x, train_y, test_x, test_y, val_x, val_y
+
+
+def run_lenet(train_x, train_y, test_x, test_y, val_x, val_y):
     # Actual model
     lenet_5_model = keras.models.Sequential([
         keras.layers.Conv2D(6, kernel_size=5, strides=1,  activation='tanh', input_shape=train_x[0].shape, padding='same'), #C1
@@ -40,4 +64,6 @@ def lenet_model():
     # Evaluate: this outputs
     lenet_5_model.evaluate(test_x, test_y)
 
-lenet_model()
+# Main part: get data as tuple and pass it to runner
+m_data = data_mnist()
+run_lenet(*m_data)
