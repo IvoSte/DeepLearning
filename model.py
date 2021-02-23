@@ -24,12 +24,12 @@ def clear_terminal():
         print("\n")
 
 def gen_data():
-    resized = np.array(Image.open("data/train/class_2/black.png").resize((200,200)))
+    resized = np.array(Image.open("data/train/black/black.png").resize((200,200)))
     for i in range(10):
-        Image.fromarray(resized).save("data/train/class_2/black{}.jpg".format(i))
-    resized = np.array(Image.open("data/train/class_1/white.png").resize((200,200)))
+        Image.fromarray(resized).save("data/train/black/black{}.jpg".format(i))
+    resized = np.array(Image.open("data/train/white/white.png").resize((200,200)))
     for i in range(10):
-        Image.fromarray(resized).save("data/train/class_1/white{}.jpg".format(i))
+        Image.fromarray(resized).save("data/train/white/white{}.jpg".format(i))
 
 def main():
     # data generator object -- used so we can stream data while training to save memory
