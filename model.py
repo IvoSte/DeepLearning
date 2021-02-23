@@ -1,3 +1,7 @@
+import os 
+os.environ["CUDA_VISIBLE_DEVICES"] = "-1"   # disable cuda
+os.environ['TF_CPP_MIN_LOG_LEVEL'] = '1'    # set cuda message level   
+from tensorflow import keras
 from keras.preprocessing.image import ImageDataGenerator
 from keras.applications import InceptionV3
 from PIL import Image
@@ -30,21 +34,23 @@ def gen_data():
 def main():
     # data generator object -- used so we can stream data while training to save memory
     datagen = ImageDataGenerator()
+
     # iterator over the dataset, sorted in classes == dir name of files
-    train_it = datagen.flow_from_directory('data/train', target_size=(200, 200), batch_size= 32, class_mode='binary')
+    train_it = datagen.flow_from_directory('data/train', batch_size= 5, class_mode='binary')
     #test_it = datagen.flow_from_directory('data/test')
-    validation_it = datagen.flow_from_directory('data/validation', target_size=(200, 200), batch_size= 32, class_mode='binary')
+    validation_it = datagen.flow_from_directory('data/validation', batch_size= 5, class_mode='binary')
 
     # create model
+    model = keras.models.Sequential()
     inception_model = InceptionV3(include_top=False,
                                     weights="imagenet",
-                                    input_tensor=None,
-                                    input_shape=None,
-                                    pooling=None,
-                                    classes=2,
-                                    classifier_activation="softmax",)
-    inception_model.compile()
-    inception_model.fit(train_it, steps_per_epoch=10, epochs=50, validation_data=validation_it, validation_steps=100)
+                                    pooling=None)
+
+    model.add(inception_model)
+    model.add(keras.layers.Dense(2))
+
+    model.compile(optimizer='adam', loss=keras.losses.sparse_categorical_crossentropy, metrics=['accuracy'])
+    model.fit(train_it, steps_per_epoch=1, epochs=10, validation_data=validation_it, validation_steps=2)
     #keras_model.evaluate(validation_it)
 
 if __name__ == main():
