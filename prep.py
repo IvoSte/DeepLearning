@@ -47,6 +47,6 @@ def norm_pixels(pixels):
     return pixels
 
 # Bit of scratch main code
-im_arr = open_print_specs("data/train/other/gif_first_frame_11aa (1).jpg", True)
+im_arr = open_print_specs("other/gif_first_frame_11aa (1).jpg", True)
 pix = norm_pixels(im_arr)
 print(pix)
