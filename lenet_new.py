@@ -49,7 +49,7 @@ def lenet_model_batch_norm(width, height, n_classes):
 		AveragePooling2D(), #S4
 		Flatten(), #Flatten
 		Dense(120, activation='tanh'), #C5
-		Dropout(0.5),
+		BatchNormalization(),
 		Dense(84, activation='tanh'), #F6
 		Dense(n_classes, activation='softmax') #Output layer
 	])
@@ -58,13 +58,13 @@ def lenet_model_batch_norm(width, height, n_classes):
 # Exp 5: LeNet model in which all tanh activations have become ReLU
 def lenet_model_relu(width, height, n_classes):
 	model = Sequential([
-		Conv2D(6, kernel_size=5, strides=1,  activation='tanh', input_shape=(width, height, 3), padding='same'), #C1
+		Conv2D(6, kernel_size=5, strides=1,  activation='relu', input_shape=(width, height, 3), padding='same'), #C1
 		AveragePooling2D(), #S2
-		Conv2D(16, kernel_size=5, strides=1, activation='tanh', padding='valid'), #C3
+		Conv2D(16, kernel_size=5, strides=1, activation='relu', padding='valid'), #C3
 		AveragePooling2D(), #S4
 		Flatten(), #Flatten
-		Dense(120, activation='tanh'), #C5
-		Dense(84, activation='tanh'), #F6
+		Dense(120, activation='relu'), #C5
+		Dense(84, activation='relu'), #F6
 		Dense(n_classes, activation='softmax') #Output layer
 	])
 	return model

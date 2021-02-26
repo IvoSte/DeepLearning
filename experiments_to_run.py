@@ -3,8 +3,8 @@
 
 # Permutations: Architecture, Regularization, Activation Function, Optimizer
 # ~ 1. Lenet, No Dropout, Tanh, SGD                 # Base
-2. Lenet, Dropout, Tanh, SGD                    # Dropout
-3. Lenet, Batch Normalization, Tanh, SGD        # Batch normalization
+# ~ 2. Lenet, Dropout, Tanh, SGD                    # Dropout
+# ~ 3. Lenet, Batch Normalization, Tanh, SGD        # Batch normalization
 # ~ 4. Lenet, No Dropout, Tanh, RMSProp             # RMSProp Optimizer
 5. Lenet, No Dropout, ReLU, SGD                 # ReLU activation
 # ~ 6. Lenet, No Dropout, Tanh, Adam                # Adam Optimizer
@@ -17,5 +17,7 @@
 
 ## Results
 1 loss: 0.7315, acc: 0.7676
+2 loss: 0.8122, acc: 0.6361
+3 loss: 0.9370, acc: 0.6991
 4 loss: 2.5063, acc: 0.7574
 6 loss: 1.2753, acc: 0.7806

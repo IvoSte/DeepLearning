@@ -17,7 +17,7 @@ matplotlib.use("Agg")
 import numpy as np
 import data_loading
 
-def learning(im_dat, model, width, height, opt, chosen_loss, n_epochs):
+def learning(im_dat, model, width, height, opt, chosen_loss, n_epochs, model_choice):
 	(trainX, trainY, valX, valY, testX, testY) = im_dat
 	print("SHAPE OF DATA: ", trainX[0].shape) # should be (width,height,3) because RGB
 	
@@ -38,7 +38,7 @@ def learning(im_dat, model, width, height, opt, chosen_loss, n_epochs):
 	model.evaluate(testX, testY)
 	predictions = model.predict(x=testX, batch_size=32)
 	
-	print(f"You used optimizer {opt}.")
+	print(f"You used optimizer {opt} and model number {model_choice}.")
 	exp_nr = input("Which experiment number is this? ")
 
 	# plot the training loss and accuracy
@@ -49,7 +49,16 @@ def learning(im_dat, model, width, height, opt, chosen_loss, n_epochs):
 	plt.plot(N, H.history["val_loss"], label="val_loss")
 	plt.plot(N, H.history["accuracy"], label="train_acc")
 	plt.plot(N, H.history["val_accuracy"], label="val_acc")
-	plt.title(f"Training Loss and Accuracy with optimizer {opt}")
+	if model_choice == 1:
+		plt.title(f"Training Loss and Accuracy with optimizer {opt}")
+	elif model_choice == 2:
+		plt.title("Training Loss and Accuracy with dropout")
+	elif model_choice == 3:
+		plt.title("Training Loss and Accuracy with batch normalization")
+	elif model_choice == 4:
+		plt.title("Training Loss and Accuracy with ReLU activations")
+	elif model_choice == 5:
+		plt.title("Training Loss and Accuracy of InceptionV3")
 	plt.xlabel("Epoch #")
 	plt.ylabel("Loss/Accuracy")
 	plt.legend()
