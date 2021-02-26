@@ -17,9 +17,9 @@ matplotlib.use("Agg")
 import numpy as np
 import data_loading
 
-def learning(model, width, height, opt, chosen_loss, n_epochs):
-	(trainX, trainY, valX, valY, testX, testY) = data_loading.load_data_cv2(width, height)
-	print("SHAPE OF DATA: ", trainX[0].shape) #flattened = (length,) otherwise (width,height,3)
+def learning(im_dat, model, width, height, opt, chosen_loss, n_epochs):
+	(trainX, trainY, valX, valY, testX, testY) = im_dat
+	print("SHAPE OF DATA: ", trainX[0].shape) # should be (width,height,3) because RGB
 	
 	# initialize training epochs
 	EPOCHS = n_epochs

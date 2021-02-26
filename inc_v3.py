@@ -11,11 +11,8 @@ from keras.applications import *
 import train_and_test
 
 def main():
-	# Experiments 1-4: different architectures
-	# ~ model = lenet_model(3)
 	model = InceptionV3()
-	train_and_test.learn(model, 299, 299, "SGD", "categorical_crossentropy", 20) #Exp1	
-	# ~ train_and_test(model, "Adam", "categorical_crossentropy", 20) #Exp4
+	train_and_test.learning(model, 299, 299, "SGD", "categorical_crossentropy", 20) #Exp1
 
 
 if __name__ == main():

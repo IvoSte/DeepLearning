@@ -42,6 +42,7 @@ def load_data_cv2(width, height):
 	''' quick test to see if cv2 stuff works properly.
 	This opens the first (randomized) image. Click or press any button
 	to close it and continue.'''
+	print("[INFO] testing if the images are correctly loaded. Please close the window if OK")
 	im = cv2.imread(imagePaths[0])
 	cv2.imshow("test", im)
 	cv2.waitKey(0)
