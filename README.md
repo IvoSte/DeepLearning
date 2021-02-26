@@ -5,6 +5,7 @@ Deep Learning Course
 - ```originals```: forked code scripts.
 - ```output```: folder in which to store output plots of accuracies+losses.
 - ```tutorial``` and ```tutorial_piek```: tutorials and scratch files. 
+- ```development```: files used for development. Largely don't work. 
 
 # Files
 - ```lenet\_new.py```: functional lenet implementation. Current version uses SGD as optimizer (original). 
