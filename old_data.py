@@ -39,26 +39,25 @@ def load_data_cv2(width, height):
 	data = []
 	labels = []
 	
-	# Quick test to see if cv2 stuff works properly.
-	# This opens the first (randomized) image. 
-	# ~ print("[INFO] testing if the images are correctly loaded. Please close the popup window if OK")
-	# ~ im = cv2.imread(imagePaths[0])
-	# ~ cv2.imshow("test", im)
-	# ~ cv2.waitKey(0)
-	# ~ print("[INFO] actually starting loading. ")
+	''' quick test to see if cv2 stuff works properly.
+	This opens the first (randomized) image. Click or press any button
+	to close it and continue.'''
+	print("[INFO] testing if the images are correctly loaded. Please close the window if OK")
+	im = cv2.imread(imagePaths[0])
+	cv2.imshow("test", im)
+	cv2.waitKey(0)
+	print("[INFO] actually starting loading. ")
 	
-	''' For development, use imagePaths[:10]'''
-	p = imagePaths[:100]
-	
-	bar = Bar('Loading', fill='+', max=len(p))
+	bar = Bar('Loading', fill='+', max=len(imagePaths))
 
 	# loop over the input images
-	for imagePath in p:
+	for i, imagePath in enumerate(imagePaths):
 		bar.next()
 				
-		# load the image and store the image in the data list
+		# load the image, resize the image to be 32x32 pixels (ignoring
+		# aspect ratio), and store the image in the data list
 		image = cv2.imread(imagePath)
-		
+		image = cv2.resize(image, (width, height))
 		data.append(image)
 		# ~ data[i] = image
 		
@@ -68,28 +67,20 @@ def load_data_cv2(width, height):
 		labels.append(label)
 		# ~ labels[i] = label
 	bar.finish()
-	
-	# Resize the image (ignoring aspect ratio)
-	bar2 = Bar('Resizing', fill='+', max=len(data))
-	for i, _ in enumerate(data):
-		bar2.next()
-		data[i] = cv2.resize(data[i], (width, height))
-	bar2.finish()
-	print(data[0].shape)
 
-	# Scale the raw pixel intensities to the range [0, 1]
+	# scale the raw pixel intensities to the range [0, 1]
 	data = np.array(data, dtype="float") / 255.0
 	labels = np.array(labels)
 
 	print("LENGTH OF DATA: ", len(data))
 
-	# Partition the data: 20% test, 10% validation, 70% train
+	# partition the data: 20% test, 10% validation, 70% train
 	(trainX, testX, trainY, testY) = train_test_split(data,
 		labels, test_size=0.2, random_state=42)
 	(trainX, valX, trainY, valY) = train_test_split(data,
 		labels, test_size=0.125, random_state=42)
 
-	print("SHAPE OF DATA: ", trainX[0].shape) # should be (width, height, 3) because RGB
+	print("SHAPE OF DATA: ", trainX[0].shape) #flattened = 3072 otherwise 32,32,3
 
 	''' NB: IK SNAP NOG NIET WAT DIT PRECIES DOET '''
 	# convert the labels from integers to vectors

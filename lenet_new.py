@@ -24,23 +24,3 @@ def lenet_model(width, height, n_classes):
 		Dense(n_classes, activation='softmax') #Output layer
 	])
 	return model
-
-# ~ def main():
-	# ~ # Number of classes
-	# ~ n_classes = 3
-	
-	# ~ # Dimensions of the convolutional layers in the model, and thus
-	# ~ # in which dimensions to resize the images
-	# ~ width = 28
-	# ~ height = 28
-	
-	# ~ model = lenet_model(width, height, n_classes)
-	# ~ im_dat = data_loading.load_data_cv2(width, height)
-	# ~ print("Welcome! Model is standard LeNet, with 28x28 RGB images.")
-	# ~ choice = input("Please specify which optimizer you would like to test. \nFill in optimizer (SGD/Adam/etc by keras): \nOr quit program by pressing enter.")
-	# ~ while choice:
-		# ~ EPOCHS = int(input("Please specify the number of epochs. "))
-		# ~ train_and_test.learning(im_dat, model, width, height, choice, "categorical_crossentropy", EPOCHS)
-
-# ~ if __name__ == main():
-    # ~ main()

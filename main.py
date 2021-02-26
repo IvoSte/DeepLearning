@@ -16,6 +16,7 @@ def main():
 	
 	while True:
 		model_choice = int(input("Please specify which model you would like to test. \n1 = LeNet (28x28)\n2 = InceptionV3 (299x299, does not work yet, don't choose)\n3 = ResNet-50 (does not work yet, don't choose)\n4: Exit program"))
+		# ~ reshaped_im = data_loading.prep_data_cv2(im_dat, width, height)
 		if model_choice == 1:
 			choice = input("Please specify which optimizer you would like to test. \nFill in optimizer (SGD/Adam/etc by keras): \nOr quit program by pressing enter.  ")
 			model = lenet_new.lenet_model(width, height, n_classes)
