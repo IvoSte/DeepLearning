@@ -2,13 +2,14 @@
 # Comment those done
 
 # Permutations: Architecture, Regularization, Activation Function, Optimizer
-1. Lenet, Dropout, Tanh, Adam                   # Base
-2. Lenet, Dropout = 0, Tanh, Adam               # No dropout
-3. Lenet, Dropout, Tanh, RMSProp                # RMSProp Optimizer
-4. Lenet, Dropout, ReLU, Adam                   # ReLU activation
-5. Lenet, Batch Normalization, Tanh, Adam       # Batch normalization 
-6. Inception, Dropout, <std activation>, Adam   # Base
-7. Inception, Dropout = 0, <std activation>, Adam  # No Dropout
-8. Inception, Dropout, <std activation>, RMSProp   # RMSProp optimizer
-9. Inception, Dropout, <std activation>, SGD    # SGD optimizer
-10. Inception, Batch Normalization, <std activation>, Adam  # Batch normalization (IF POSSIBLE)
+1. Lenet, No Dropout, Tanh, SGD                 # Base
+2. Lenet, Dropout, Tanh, SGD                    # Dropout
+3. Lenet, Batch Normalization, Tanh, SGD        # Batch normalization
+4. Lenet, No Dropout, Tanh, RMSProp             # RMSProp Optimizer
+5. Lenet, No Dropout, ReLU, SGD                 # ReLU activation
+6. Lenet, No Dropout, Tanh, Adam                # Adam Optimizer
+7. Inception, Dropout, std, Adam                # Base
+8. Inception, Dropout = 0, std, Adam            # No Dropout
+9. Inception, Batch Normalization, std, Adam    # Batch normalization (IF POSSIBLE)
+10. Inception, Dropout, std, RMSProp            # RMSProp optimizer
+11. Inception, Dropout, std, SGD                # SGD optimizer
