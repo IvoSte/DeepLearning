@@ -2,3 +2,4 @@ img/
 data/
 corrupt/
 ./idea/
+__pycache__
