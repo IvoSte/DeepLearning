@@ -59,6 +59,10 @@ def learning(im_dat, model, width, height, opt, chosen_loss, n_epochs, model_cho
 		plt.title("Training Loss and Accuracy with ReLU activations")
 	elif model_choice == 5:
 		plt.title("Training Loss and Accuracy of InceptionV3")
+	elif model_choice == 6:
+		plt.title("Training Loss and Accuracy with double dropout")
+	elif model_choice == 7:
+		plt.title("Training Loss and Accuracy of AlexNet")
 	plt.xlabel("Epoch #")
 	plt.ylabel("Loss/Accuracy")
 	plt.legend()

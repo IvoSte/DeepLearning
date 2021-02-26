@@ -68,3 +68,19 @@ def lenet_model_relu(width, height, n_classes):
 		Dense(n_classes, activation='softmax') #Output layer
 	])
 	return model
+
+# Exp 7: LeNet model with addition of two dropout layers
+def lenet_model_double_dropout(width, height, n_classes):
+	model = Sequential([
+		Conv2D(6, kernel_size=5, strides=1,  activation='tanh', input_shape=(width, height, 3), padding='same'), #C1
+		AveragePooling2D(), #S2
+		Conv2D(16, kernel_size=5, strides=1, activation='tanh', padding='valid'), #C3
+		AveragePooling2D(), #S4
+		Flatten(), #Flatten
+		Dense(120, activation='tanh'), #C5
+		Dropout(0.5),
+		Dense(84, activation='tanh'), #F6
+		Dropout(0.5),
+		Dense(n_classes, activation='softmax') #Output layer
+	])
+	return model
