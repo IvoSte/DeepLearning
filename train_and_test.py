@@ -38,6 +38,7 @@ def learning(im_dat, model, width, height, opt, chosen_loss, n_epochs):
 	model.evaluate(testX, testY)
 	predictions = model.predict(x=testX, batch_size=32)
 	
+	print(f"You used optimizer {opt}.")
 	exp_nr = input("Which experiment number is this? ")
 
 	# plot the training loss and accuracy
@@ -48,7 +49,7 @@ def learning(im_dat, model, width, height, opt, chosen_loss, n_epochs):
 	plt.plot(N, H.history["val_loss"], label="val_loss")
 	plt.plot(N, H.history["accuracy"], label="train_acc")
 	plt.plot(N, H.history["val_accuracy"], label="val_acc")
-	plt.title("Training Loss and Accuracy (Simple NN)")
+	plt.title(f"Training Loss and Accuracy with optimizer {opt}")
 	plt.xlabel("Epoch #")
 	plt.ylabel("Loss/Accuracy")
 	plt.legend()

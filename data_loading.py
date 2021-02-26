@@ -47,8 +47,8 @@ def load_data_cv2():
 	# ~ cv2.waitKey(0)
 	# ~ print("[INFO] actually starting loading. ")
 	
-	''' For development, use imagePaths[:10]'''
-	p = imagePaths#[:2000]
+	''' For development, use imagePaths[:100] or something like that '''
+	p = imagePaths#[:100]
 	
 	bar = Bar('Loading', fill='+', max=len(p))
 
@@ -76,15 +76,14 @@ def prep_data_cv2(data, labels, width, height):
 	bar2 = Bar('Resizing', fill='+', max=len(data))
 	for i, _ in enumerate(data):
 		bar2.next()
-		data[i] = cv2.resize(data[i], (width, height))
+		data[i] = cv2.resize(data[i], (width, height))#.flatten()
 	bar2.finish()
-	print(data[0].shape)
 
 	# Scale the raw pixel intensities to the range [0, 1]
 	data = np.array(data, dtype="float") / 255.0
 	labels = np.array(labels)
 
-	print("LENGTH OF DATA: ", len(data))
+	print("LENGTH OF ALL DATA: ", len(data))
 
 	# Partition the data: 20% test, 10% validation, 70% train
 	(trainX, testX, trainY, testY) = train_test_split(data,
@@ -92,9 +91,8 @@ def prep_data_cv2(data, labels, width, height):
 	(trainX, valX, trainY, valY) = train_test_split(data,
 		labels, test_size=0.125, random_state=42)
 
-	print("SHAPE OF DATA: ", trainX[0].shape) # should be (width, height, 3) because RGB
+	print("SHAPE OF TRAIN DATA: ", trainX[0].shape) # should be (width, height, 3) because RGB
 
-	''' NB: IK SNAP NOG NIET WAT DIT PRECIES DOET '''
 	# convert the labels from integers to vectors
 	lb = LabelBinarizer()
 	trainY = lb.fit_transform(trainY)
