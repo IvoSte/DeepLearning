@@ -1,0 +1,53 @@
+# import the necessary packages
+
+## tensorflow etc
+import tensorflow as tf
+from tensorflow import keras
+from keras.models import *
+from keras.layers import *
+from keras.optimizers import *
+from keras.applications import *
+
+# set the matplotlib backend so figures can be saved in the background
+import matplotlib
+import matplotlib.pyplot as plt
+matplotlib.use("Agg")
+
+## other
+import numpy as np
+import data_loading
+
+def learning(model, width, height, opt, chosen_loss, n_epochs):
+	(trainX, trainY, valX, valY, testX, testY) = data_loading.load_data_cv2(width, height)
+	print("SHAPE OF DATA: ", trainX[0].shape) #flattened = (length,) otherwise (width,height,3)
+	
+	# initialize training epochs
+	EPOCHS = n_epochs
+	
+	# compile the model
+	print("\n[INFO] training network...")
+	model.compile(loss=chosen_loss, optimizer=opt,
+		metrics=["accuracy"])
+		
+	# train the neural network
+	H = model.fit(x=trainX, y=trainY, validation_data=(valX, valY),
+		epochs=EPOCHS, batch_size=32)
+	
+	# evaluate the network
+	print("\n[INFO] evaluating network...")
+	model.evaluate(testX, testY)
+	predictions = model.predict(x=testX, batch_size=32)
+
+	# plot the training loss and accuracy
+	N = np.arange(0, EPOCHS)
+	plt.style.use("ggplot")
+	plt.figure()
+	plt.plot(N, H.history["loss"], label="train_loss")
+	plt.plot(N, H.history["val_loss"], label="val_loss")
+	plt.plot(N, H.history["accuracy"], label="train_acc")
+	plt.plot(N, H.history["val_accuracy"], label="val_acc")
+	plt.title("Training Loss and Accuracy (Simple NN)")
+	plt.xlabel("Epoch #")
+	plt.ylabel("Loss/Accuracy")
+	plt.legend()
+	plt.savefig("output/result.png")
