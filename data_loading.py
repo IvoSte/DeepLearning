@@ -25,7 +25,7 @@ import os
 from progress.bar import *
 
 # This is slow, but works
-def load_data_cv2(width, height):
+def load_data_cv2():
 	# initialize the data and labels
 	print("[INFO] loading images...")
 	
@@ -48,12 +48,13 @@ def load_data_cv2(width, height):
 	# ~ print("[INFO] actually starting loading. ")
 	
 	''' For development, use imagePaths[:10]'''
-	p = imagePaths[:100]
+	p = imagePaths#[:2000]
 	
 	bar = Bar('Loading', fill='+', max=len(p))
 
 	# loop over the input images
-	for imagePath in p:
+	for i, imagePath in enumerate(p):
+	# ~ for imagePath in p:
 		bar.next()
 				
 		# load the image and store the image in the data list
@@ -68,7 +69,9 @@ def load_data_cv2(width, height):
 		labels.append(label)
 		# ~ labels[i] = label
 	bar.finish()
-	
+	return data, labels
+
+def prep_data_cv2(data, labels, width, height):	
 	# Resize the image (ignoring aspect ratio)
 	bar2 = Bar('Resizing', fill='+', max=len(data))
 	for i, _ in enumerate(data):

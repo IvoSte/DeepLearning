@@ -37,6 +37,8 @@ def learning(im_dat, model, width, height, opt, chosen_loss, n_epochs):
 	print("\n[INFO] evaluating network...")
 	model.evaluate(testX, testY)
 	predictions = model.predict(x=testX, batch_size=32)
+	
+	exp_nr = input("Which experiment number is this? ")
 
 	# plot the training loss and accuracy
 	N = np.arange(0, EPOCHS)
@@ -50,4 +52,4 @@ def learning(im_dat, model, width, height, opt, chosen_loss, n_epochs):
 	plt.xlabel("Epoch #")
 	plt.ylabel("Loss/Accuracy")
 	plt.legend()
-	plt.savefig("output/result.png")
+	plt.savefig(f"output/result_{exp_nr}.png")
