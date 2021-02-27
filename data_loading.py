@@ -35,7 +35,7 @@ def load_data_cv2():
     print("[INFO] actually starting loading. ")
 
     # For development, we can use imagePaths[:100] or something similar
-    p = imagePaths[:10]
+    p = imagePaths
 
     bar = Bar('Loading', fill='+', max=len(p))
 
