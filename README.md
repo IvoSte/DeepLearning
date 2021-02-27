@@ -1,5 +1,8 @@
 # DeepLearning
-Deep Learning Course
+Art image classifier for Deep Learning course. Please download the images* from:
+https://www.kaggle.com/ipythonx/wikiart-gangogh-creating-art-gan
+
+*we used only the classes "marina", "flower-painting", and "animal-painting", but you could use others or more. Be aware that the current program does assume only three classes.
 
 # Requirements and running
 Requires a number of packages. To install them all in one go, run

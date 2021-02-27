@@ -51,7 +51,7 @@ def learning(im_dat, model, opt, chosen_loss, n_epochs, model_choice):
     if model_choice == 1:
         plt.title(f"Training Loss and Accuracy with optimizer {opt}")
     elif model_choice == 2:
-        plt.title("Training Loss and Accuracy with dropout")
+        plt.title("Training Loss and Accuracy with one dropout layer")
     elif model_choice == 3:
         plt.title("Training Loss and Accuracy with batch normalization")
     elif model_choice == 4:
@@ -59,7 +59,7 @@ def learning(im_dat, model, opt, chosen_loss, n_epochs, model_choice):
     elif model_choice == 5:
         plt.title("Training Loss and Accuracy of InceptionV3")
     elif model_choice == 6:
-        plt.title("Training Loss and Accuracy with double dropout")
+        plt.title("Training Loss and Accuracy with two dropout layers")
     elif model_choice == 7:
         plt.title("Training Loss and Accuracy of AlexNet")
     plt.xlabel("Epoch #")
