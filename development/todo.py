@@ -17,3 +17,11 @@ Architectures
     resnet
     inception
     alexnet?
+
+
+//Verslag
+- Precieze parameters in de methods. Dropout rate, initial learning rate, epochs, etc. Alles dat we hebben
+- validation loss, hoe precies?
+- Sources
+- Adadelta
+- formules waar nodig (activation functions)
