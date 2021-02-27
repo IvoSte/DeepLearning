@@ -1,11 +1,14 @@
 # DeepLearning
 Art image classifier for Deep Learning course. Please download the images* from:
 https://www.kaggle.com/ipythonx/wikiart-gangogh-creating-art-gan
-and store the folders with names indicating class, in a folder "img". For example:
--img
---marina
---flower-painting
---animal-painting
+and store the folders with names indicating class, in a folder "img", in the root folder. For example:
+
+ * img/
+   * marina/
+   * flower-painting/
+   * animal-painting/
+ * output/
+ * etc.
 
 *we used only the classes "marina", "flower-painting", and "animal-painting", but you could use others or more. Be aware that the current program does assume only three classes.
 
